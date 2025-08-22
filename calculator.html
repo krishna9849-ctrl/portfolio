@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .calculator-box {
+      background: #222;
+      padding: 20px;
+      border-radius: 12px;
+      width: 280px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+    .calc-display {
+      background: #000000;
+      color: #fff;
+      font-size: 1.8em;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      text-align: right;
+      min-height: 36px;
+      overflow-x: auto;
+    }
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .btn {
+      padding: 16px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 6px;
+      background: #333;
+      color: #fff;
+      cursor: pointer;
+    }
+    .btn-operator { background: #ff9500; }
+    .btn-equal { background: #34c759; }
+    .btn-clear {
+      background: #ff3b30;
+      grid-column: span 4;
+    }
+    .btn:active { background: #555; }
+  </style>
+</head>
+<body>
+  <div class="calculator-box">
+    <div class="calc-display" id="calcDisplay"></div>
+    <div class="button-grid">
+      <button class="btn" onclick="addValue('7')">7</button>
+      <button class="btn" onclick="addValue('8')">8</button>
+      <button class="btn" onclick="addValue('9')">9</button>
+      <button class="btn btn-operator" onclick="addValue('/')">÷</button>
+      <button class="btn" onclick="addValue('4')">4</button>
+      <button class="btn" onclick="addValue('5')">5</button>
+      <button class="btn" onclick="addValue('6')">6</button>
+      <button class="btn btn-operator" onclick="addValue('*')">×</button>
+      <button class="btn" onclick="addValue('1')">1</button>
+      <button class="btn" onclick="addValue('2')">2</button>
+      <button class="btn" onclick="addValue('3')">3</button>
+      <button class="btn btn-operator" onclick="addValue('-')">−</button>
+      <button class="btn" onclick="addValue('0')">0</button>
+      <button class="btn" onclick="addValue('.')">.</button>
+      <button class="btn btn-equal" onclick="getResult()">=</button>
+      <button class="btn btn-operator" onclick="addValue('+')">+</button>
+      <button class="btn btn-clear" onclick="clearCalc()">C</button>
+    </div>
+  </div>
+  <script>
+    let calcDisplay = document.getElementById('calcDisplay');
+    let input = '';
+    function addValue(val) {
+      input += val;
+      calcDisplay.textContent = input;
+    }
+    function getResult() {
+      try {
+        input = eval(input).toString();
+        calcDisplay.textContent = input;
+      } catch {
+        calcDisplay.textContent = 'Error';
+        input = '';
+      }
+    }
+    function clearCalc() {
+      input = '';
+      calcDisplay.textContent = '';
+    }
+  </script>
+</body>
+</html>
